@@ -9,12 +9,12 @@ def greet(name: Optional[str] = None) -> str:
     Generate a greeting message.
     
     Args:
-        name: Optional name to greet. If not provided, uses "World".
+        name: Optional name to greet. If not provided or empty, uses "World".
     
     Returns:
         A greeting message string.
     """
-    if name:
+    if name and name.strip():
         return f"Hello, {name}!"
     return "Hello, World!"
 
