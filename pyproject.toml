@@ -5,7 +5,7 @@ description = "A collection of helper tools for development teams using uv and u
 authors = [
     { name = "carpusherw", email = "41030581+carpusherw@users.noreply.github.com" }
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = []
 
 [project.scripts]
@@ -25,6 +25,3 @@ sources = ["src"]
 dev = [
     "pytest>=9.0.2",
 ]
-
-[tool.pytest.ini_options]
-pythonpath = ["src"]
