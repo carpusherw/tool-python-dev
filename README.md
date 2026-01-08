@@ -67,7 +67,7 @@ cd tool-python-dev
 uv sync
 
 # Run tests
-PYTHONPATH=src uv run pytest src/tests/
+uv run pytest src/tests/
 
 # Run tools locally
 uv run hello

@@ -37,7 +37,7 @@ cd tool-python-dev
 uv sync
 
 # Run tests
-PYTHONPATH=src uv run pytest src/tests/
+uv run pytest src/tests/
 ```
 
 ### Project Structure
@@ -178,7 +178,7 @@ Always test changes before committing:
 
 ```bash
 # Run tests
-PYTHONPATH=src uv run pytest src/tests/ -v
+uv run pytest src/tests/ -v
 
 # Test the CLI tool
 uv run hello
