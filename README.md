@@ -4,7 +4,9 @@ A collection of helper tools for development teams, powered by [uv](https://gith
 
 ## What is this?
 
-This project provides command-line helper tools that you can run instantly using `uvx` without needing to install them. Perfect for development teams who want to share useful utilities without managing complex installations.
+This project provides command-line helper tools that you can run instantly using `uvx` without needing to
+install them. Perfect for development teams who want to share useful utilities without managing complex
+installations.
 
 ## Quick Start
 

@@ -4,7 +4,8 @@ This guide explains how to work with this repository, whether you're a human dev
 
 ## Project Overview
 
-This is a uv-based Python project that provides helper tools for development teams. The tools can be run using `uvx` without requiring installation.
+This is a uv-based Python project that provides helper tools for development teams.
+The tools can be run using `uvx` without requiring installation.
 
 ## Prerequisites
 
@@ -73,17 +74,11 @@ uv run pytest src/tests/ --cov=hello
 
 ### Code Quality
 
-Before committing, ensure your code meets quality standards:
+Pre-commit hooks run automatically on commit. To run all checks manually:
 
 ```bash
-# Format code (if ruff is added)
-uv run ruff format .
-
-# Lint code (if ruff is added)
-uv run ruff check .
-
-# Type check (if mypy is added)
-uv run mypy src/
+# Run all pre-commit hooks
+uv run pre-commit run --all-files
 ```
 
 ## Using the Tools
