@@ -1,6 +1,5 @@
 """Unit tests for the hello tool."""
 
-import pytest
 from hello import greet
 
 
