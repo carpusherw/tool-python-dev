@@ -6,10 +6,11 @@ authors = [
     { name = "carpusherw", email = "41030581+carpusherw@users.noreply.github.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = ["pyjwt[crypto]>=2.10.1"]
 
 [project.scripts]
 hello = "hello:main"
+sign_jwt = "sign_jwt:main"
 
 [build-system]
 requires = ["hatchling"]

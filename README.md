@@ -19,39 +19,43 @@ You only need [uv](https://github.com/astral-sh/uv) installed on your system.
 You can run tools directly from this GitHub repository using SSH authentication:
 
 ```bash
-# Run the hello tool
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello
-
-# Pass arguments to the tool
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Developer"
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git <tool_name> [arguments]
 ```
 
 ## Available Tools
 
-### hello
+- [sign_jwt](#sign_jwt) - Sign JWT tokens using ES512 algorithm
 
-A simple greeting tool to demonstrate the project structure.
+### sign_jwt
+
+Sign JWT tokens using ES512 algorithm.
 
 **Usage:**
 
 ```bash
-# Default greeting
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello
-# Output: Hello, World!
-
-# Custom greeting
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Alice"
-# Output: Hello, Alice!
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt <private_key_id> <private_key_file> [options]
 ```
+
+**Arguments:**
+
+- `private_key_id` - Private key ID (kid) to use in JWT header
+- `private_key_file` - Path to private key PEM file
+
+**Options:**
+
+- `--issuer` - Token issuer (default: svc-test)
+- `--subject` - Token subject (default: svc-test)
+- `--name` - Name claim (default: Sample User)
+- `--days` - Token expiration in days (default: 1)
 
 **Examples:**
 
 ```bash
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Team"
-# Output: Hello, Team!
+# Sign with default values
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt my-key-id ./private_key.pem
 
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Development Team"
-# Output: Hello, Development Team!
+# Sign with custom values
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt my-key-id ./private_key.pem --issuer my-service --subject user@example.com --days 7
 ```
 
 ## For Developers
