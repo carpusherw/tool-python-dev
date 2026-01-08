@@ -33,8 +33,10 @@ uv run pytest
 tool-python-dev/
 ├── src/
 │   ├── hello.py              # Hello world helper tool
+│   ├── sign_jwt.py           # JWT signing tool
 │   └── tests/
-│       └── test_hello.py     # Unit tests
+│       ├── test_hello.py     # Unit tests for hello
+│       └── test_sign_jwt.py  # Unit tests for sign_jwt
 ├── pyproject.toml            # Project configuration
 ├── README.md                 # User documentation
 ├── AGENTS.md                 # This file
@@ -45,42 +47,13 @@ tool-python-dev/
 
 ### Adding a New Tool
 
-1. Create a new module in `src/`:
+Use the Claude Code slash command:
 
-   ```python
-   # src/my_tool.py
-   def main() -> None:
-       """Main entry point for the tool."""
-       print("My tool output")
-   ```
+```bash
+/new-tool <tool_name>
+```
 
-2. Add an entry point in `pyproject.toml`:
-
-   ```toml
-   [project.scripts]
-   my-tool = "my_tool:main"
-   ```
-
-3. Create tests in `src/tests/`:
-
-   ```python
-   # src/tests/test_my_tool.py
-   from my_tool import main
-
-   def test_my_tool():
-       # Your test here
-       pass
-   ```
-
-4. Test your tool:
-
-   ```bash
-   # Run locally
-   uv run my-tool
-
-   # Test with uvx
-   uvx --from . my-tool
-   ```
+This will guide you through creating the tool module, tests, and documentation.
 
 ### Running Tests
 
@@ -118,18 +91,17 @@ uv run mypy src/
 ### With uv run (local development)
 
 ```bash
-uv run hello
-uv run hello "Your Name"
+uv run sign_jwt <private_key_id> <private_key_file> [options]
 ```
 
 ### With uvx (anywhere)
 
 ```bash
 # From local directory
-uvx --from . hello
+uvx --from . sign_jwt <private_key_id> <private_key_file>
 
 # From GitHub with SSH
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt <private_key_id> <private_key_file>
 ```
 
 ## For Coding Agents
@@ -175,9 +147,9 @@ Always test changes before committing:
 # Run tests
 uv run pytest -v
 
-# Test the CLI tool
-uv run hello
-uvx --from . hello
+# Test CLI tools
+uv run <tool_name> [arguments]
+uvx --from . <tool_name> [arguments]
 ```
 
 ### Code Style

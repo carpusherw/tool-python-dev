@@ -7,10 +7,10 @@ from typing import Optional
 def greet(name: Optional[str] = None) -> str:
     """
     Generate a greeting message.
-    
+
     Args:
         name: Optional name to greet. If not provided or empty, uses "World".
-    
+
     Returns:
         A greeting message string.
     """
@@ -24,7 +24,7 @@ def main() -> None:
     name = None
     if len(sys.argv) > 1:
         name = sys.argv[1]
-    
+
     message = greet(name)
     print(message)
 
