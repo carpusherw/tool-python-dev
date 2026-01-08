@@ -1,7 +1,7 @@
 """Unit tests for the hello tool."""
 
 import pytest
-from tool_python_dev.hello import greet
+from hello import greet
 
 
 def test_greet_default():

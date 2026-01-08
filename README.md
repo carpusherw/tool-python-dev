@@ -10,43 +10,20 @@ This project provides command-line helper tools that you can run instantly using
 
 ### Prerequisites
 
-You only need [uv](https://github.com/astral-sh/uv) installed on your system:
-
-```bash
-# On macOS and Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Or using pip
-pip install uv
-
-# Or using pipx
-pipx install uv
-```
+You only need [uv](https://github.com/astral-sh/uv) installed on your system.
 
 ### Using the Tools
 
-#### From the Local Repository
+#### From GitHub (SSH)
 
-If you've cloned this repository:
+You can run tools directly from this GitHub repository using SSH authentication:
 
 ```bash
 # Run the hello tool
-uvx --from . hello
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello
 
 # Pass arguments to the tool
-uvx --from . hello "World"
-```
-
-#### From PyPI (when published)
-
-Once published, you can run tools without cloning:
-
-```bash
-# Run directly from PyPI
-uvx tool-python-dev hello
-
-# With arguments
-uvx tool-python-dev hello "Developer"
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Developer"
 ```
 
 ## Available Tools
@@ -58,20 +35,20 @@ A simple greeting tool to demonstrate the project structure.
 **Usage:**
 ```bash
 # Default greeting
-uvx --from . hello
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello
 # Output: Hello, World!
 
 # Custom greeting
-uvx --from . hello "Alice"
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Alice"
 # Output: Hello, Alice!
 ```
 
 **Examples:**
 ```bash
-uvx --from . hello "Team"
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Team"
 # Output: Hello, Team!
 
-uvx --from . hello "Development Team"
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello "Development Team"
 # Output: Hello, Development Team!
 ```
 
@@ -83,35 +60,30 @@ Want to contribute or add your own tools? Check out [AGENTS.md](AGENTS.md) for t
 
 ```bash
 # Clone the repository
-git clone https://github.com/carpusherw/tool-python-dev.git
+git clone git@github.com:carpusherw/tool-python-dev.git
 cd tool-python-dev
 
 # Install dependencies
 uv sync
 
 # Run tests
-uv run pytest tests/
+PYTHONPATH=src uv run pytest src/tests/
 
 # Run tools locally
 uv run hello
 ```
 
-## Why uv and uvx?
-
-- **Fast**: uv is 10-100x faster than pip
-- **No installation needed**: uvx runs tools in isolated environments
-- **Reproducible**: Lock file ensures consistent dependencies
-- **Modern**: Built with Rust for performance and reliability
-
 ## Project Structure
 
 ```
 tool-python-dev/
-├── src/tool_python_dev/    # Source code for tools
-├── tests/                  # Unit tests
-├── pyproject.toml          # Project configuration
-├── README.md               # This file (user guide)
-└── AGENTS.md               # Development/contribution guide
+├── src/
+│   ├── hello.py              # Hello world helper tool
+│   └── tests/
+│       └── test_hello.py     # Unit tests
+├── pyproject.toml            # Project configuration
+├── README.md                 # This file (user guide)
+└── AGENTS.md                 # Development/contribution guide
 ```
 
 ## Contributing
@@ -126,15 +98,3 @@ Contributions are welcome! Please see [AGENTS.md](AGENTS.md) for detailed instru
 ## License
 
 This project is open source. Please check the LICENSE file for details.
-
-## Support
-
-- **Documentation**: [AGENTS.md](AGENTS.md)
-- **Issues**: [GitHub Issues](https://github.com/carpusherw/tool-python-dev/issues)
-- **uv Documentation**: https://docs.astral.sh/uv/
-
-## About uv
-
-uv is an extremely fast Python package installer and resolver, written in Rust. It's designed as a drop-in replacement for pip, pip-tools, and virtualenv, with significantly better performance.
-
-Learn more: https://github.com/astral-sh/uv

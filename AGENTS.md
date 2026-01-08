@@ -37,7 +37,7 @@ cd tool-python-dev
 uv sync
 
 # Run tests
-uv run pytest tests/
+PYTHONPATH=src uv run pytest src/tests/
 ```
 
 ### Project Structure
@@ -45,11 +45,9 @@ uv run pytest tests/
 ```
 tool-python-dev/
 ├── src/
-│   └── tool_python_dev/
-│       ├── __init__.py
-│       └── hello.py          # Hello world helper tool
-├── tests/
-│   └── test_hello.py         # Unit tests
+│   ├── hello.py              # Hello world helper tool
+│   └── tests/
+│       └── test_hello.py     # Unit tests
 ├── pyproject.toml            # Project configuration
 ├── README.md                 # User documentation
 ├── AGENTS.md                 # This file
@@ -60,9 +58,9 @@ tool-python-dev/
 
 ### Adding a New Tool
 
-1. Create a new module in `src/tool_python_dev/`:
+1. Create a new module in `src/`:
    ```python
-   # src/tool_python_dev/my_tool.py
+   # src/my_tool.py
    def main() -> None:
        """Main entry point for the tool."""
        print("My tool output")
@@ -71,13 +69,13 @@ tool-python-dev/
 2. Add an entry point in `pyproject.toml`:
    ```toml
    [project.scripts]
-   my-tool = "tool_python_dev.my_tool:main"
+   my-tool = "my_tool:main"
    ```
 
-3. Create tests in `tests/`:
+3. Create tests in `src/tests/`:
    ```python
-   # tests/test_my_tool.py
-   from tool_python_dev.my_tool import main
+   # src/tests/test_my_tool.py
+   from my_tool import main
    
    def test_my_tool():
        # Your test here
@@ -97,16 +95,16 @@ tool-python-dev/
 
 ```bash
 # Run all tests
-uv run pytest tests/
+PYTHONPATH=src uv run pytest src/tests/
 
 # Run specific test file
-uv run pytest tests/test_hello.py
+PYTHONPATH=src uv run pytest src/tests/test_hello.py
 
 # Run with verbose output
-uv run pytest tests/ -v
+PYTHONPATH=src uv run pytest src/tests/ -v
 
 # Run with coverage
-uv run pytest tests/ --cov=tool_python_dev
+PYTHONPATH=src uv run pytest src/tests/ --cov=hello
 ```
 
 ### Code Quality
@@ -139,27 +137,8 @@ uv run hello "Your Name"
 # From local directory
 uvx --from . hello
 
-# From published package (when published to PyPI)
-uvx tool-python-dev hello
-```
-
-## Building and Publishing
-
-### Build the package
-
-```bash
-# Build wheel and source distribution
-uv build
-```
-
-### Publish to PyPI (when ready)
-
-```bash
-# Test on TestPyPI first
-uv publish --repository testpypi
-
-# Publish to PyPI
-uv publish
+# From GitHub with SSH
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git hello
 ```
 
 ## For Coding Agents
@@ -199,7 +178,7 @@ Always test changes before committing:
 
 ```bash
 # Run tests
-uv run pytest tests/ -v
+PYTHONPATH=src uv run pytest src/tests/ -v
 
 # Test the CLI tool
 uv run hello
