@@ -1,0 +1,11 @@
+{
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.unusedImports": "explicit",
+        },
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
+    },
+    "python.pyrefly.displayTypeErrors": "force-on"
+}
