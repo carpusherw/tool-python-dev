@@ -6,5 +6,8 @@
     "deny": [
       "Bash(rm:*)"
     ]
+  },
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true
   }
 }
