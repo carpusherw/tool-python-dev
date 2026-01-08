@@ -33,7 +33,8 @@ def sign_jwt(
         "iss": issuer,
         "sub": subject,
         "name": name,
-        "exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=days),
+        "exp": datetime.datetime.now(datetime.timezone.utc)
+        + datetime.timedelta(days=days),
     }
 
     token = jwt.encode(
@@ -52,12 +53,22 @@ def sign_jwt(
 def main() -> int:
     """Main entry point for the sign_jwt tool."""
     parser = argparse.ArgumentParser(description="Sign JWT token")
-    parser.add_argument("private_key_id", help="Private key ID (kid) to use in JWT header")
+    parser.add_argument(
+        "private_key_id", help="Private key ID (kid) to use in JWT header"
+    )
     parser.add_argument("private_key_file", help="Path to private key PEM file")
-    parser.add_argument("--issuer", default="svc-test", help="Token issuer (default: svc-test)")
-    parser.add_argument("--subject", default="svc-test", help="Token subject (default: svc-test)")
-    parser.add_argument("--name", default="Sample User", help="Name claim (default: Sample User)")
-    parser.add_argument("--days", type=int, default=1, help="Token expiration in days (default: 1)")
+    parser.add_argument(
+        "--issuer", default="svc-test", help="Token issuer (default: svc-test)"
+    )
+    parser.add_argument(
+        "--subject", default="svc-test", help="Token subject (default: svc-test)"
+    )
+    parser.add_argument(
+        "--name", default="Sample User", help="Name claim (default: Sample User)"
+    )
+    parser.add_argument(
+        "--days", type=int, default=1, help="Token expiration in days (default: 1)"
+    )
 
     args = parser.parse_args()
 
