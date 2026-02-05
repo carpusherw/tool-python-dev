@@ -42,6 +42,7 @@ def test_sign_jwt_default_values():
     assert decoded["iss"] == "svc-test"
     assert decoded["sub"] == "svc-test"
     assert decoded["name"] == "Sample User"
+    assert decoded["tenant"] == "localhost"
     assert "exp" in decoded
 
 
@@ -55,6 +56,7 @@ def test_sign_jwt_custom_values():
         issuer="custom-issuer",
         subject="custom-subject",
         name="Custom Name",
+        tenant="custom-tenant",
         days=7,
     )
 
@@ -63,6 +65,7 @@ def test_sign_jwt_custom_values():
     assert decoded["iss"] == "custom-issuer"
     assert decoded["sub"] == "custom-subject"
     assert decoded["name"] == "Custom Name"
+    assert decoded["tenant"] == "custom-tenant"
 
 
 def test_sign_jwt_header_contains_kid():

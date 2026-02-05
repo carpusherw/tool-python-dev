@@ -13,6 +13,7 @@ def sign_jwt(
     issuer: str = "svc-test",
     subject: str = "svc-test",
     name: str = "Sample User",
+    tenant: str = "localhost",
     days: int = 1,
 ) -> str:
     """
@@ -24,6 +25,7 @@ def sign_jwt(
         issuer: Token issuer.
         subject: Token subject.
         name: Name claim.
+        tenant: Tenant claim.
         days: Token expiration in days.
 
     Returns:
@@ -33,6 +35,7 @@ def sign_jwt(
         "iss": issuer,
         "sub": subject,
         "name": name,
+        "tenant": tenant,
         "exp": datetime.datetime.now(datetime.timezone.utc)
         + datetime.timedelta(days=days),
     }
@@ -67,6 +70,9 @@ def main() -> int:
         "--name", default="Sample User", help="Name claim (default: Sample User)"
     )
     parser.add_argument(
+        "--tenant", default="localhost", help="Tenant claim (default: localhost)"
+    )
+    parser.add_argument(
         "--days", type=int, default=1, help="Token expiration in days (default: 1)"
     )
 
@@ -88,6 +94,7 @@ def main() -> int:
         issuer=args.issuer,
         subject=args.subject,
         name=args.name,
+        tenant=args.tenant,
         days=args.days,
     )
 
