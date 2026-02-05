@@ -48,6 +48,7 @@ uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt <pri
 - `--issuer` - Token issuer (default: svc-test)
 - `--subject` - Token subject (default: svc-test)
 - `--name` - Name claim (default: Sample User)
+- `--tenant` - Tenant claim (default: localhost)
 - `--days` - Token expiration in days (default: 1)
 
 **Examples:**
@@ -57,7 +58,7 @@ uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt <pri
 uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt my-key-id ./private_key.pem
 
 # Sign with custom values
-uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt my-key-id ./private_key.pem --issuer my-service --subject user@example.com --days 7
+uvx --from git+ssh://git@github.com/carpusherw/tool-python-dev.git sign_jwt my-key-id ./private_key.pem --issuer my-service --subject user@example.com --tenant my-tenant --days 7
 ```
 
 ## For Developers
